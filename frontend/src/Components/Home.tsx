@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import AppBar from "@mui/material/AppBar";
 import Fade from "@mui/material/Fade";
-import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material";
 
@@ -41,36 +39,10 @@ const fontTheme = createTheme(
   }
 );
 
-const colorHeaderTheme = createTheme(
-  {
-    palette: {
-      primary: {
-        main: "#DD7D6C" //"#E35239AA" 
-      },
-    },
-  }
-);
-
 const Home = () => {
-
-  
-
   return (
     <HomeContainer id="home">
-      <ThemeProvider theme={colorHeaderTheme}>
-      <AppBar
-            position="fixed"
-            color={"transparent"}
-            elevation={0}
-          >
-            
-              <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-                  <Menu />
-              </Toolbar>
-            
-          
-        </AppBar>
-      </ThemeProvider>
+     
       <HomeTextContainer>
         <Fade
           in={true}
