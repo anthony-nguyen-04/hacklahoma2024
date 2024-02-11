@@ -54,7 +54,7 @@ router.get('/', async (req, res) => {
         for (let time of times) {
             found.push({
                 player: time.player,
-                time: time.splits.filter(split => split.level == level).reduce((sum, a) => sum + a, 0)
+                time: time.splits.filter(split => split.level == level).reduce((sum, a) => sum + a.time, 0)
             })
         }
     } else {
