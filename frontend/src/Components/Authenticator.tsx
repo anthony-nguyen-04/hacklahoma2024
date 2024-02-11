@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import { useAuth0 } from "@auth0/auth0-react";
 
+import axios from "axios";
 import jwt from "jwt-encode";
 
 import styled from "@emotion/styled";
@@ -29,7 +30,9 @@ const Authenticator = () => {
   
         var token = jwt(packet, config["JWT_SECRET"]);
   
-        console.log(token);
+        localStorage['jwt'] = token;
+
+        axios.get(`http://runitback-api.sambird.dev/login?email=${user.email}&jwt=${token}`);
       }
     }
 
