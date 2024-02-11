@@ -78,6 +78,9 @@ router.post('/', async (req, res) => {
     if (!splits)
         return res.status(400).send('missing userId or splits')
 
+    if (splits.length !== levels.length)
+        return res.status(400).send('too many or too few levels complete')
+
     for (let split of splits) {
         levels.splice(levels.indexOf(split.level))
     }
@@ -86,6 +89,8 @@ router.post('/', async (req, res) => {
         return res.status(400).send('not all levels complete')
 
     await Times.create({ player: req.user, splits: splits })
+
+    return res.sendStatus(200)
 })
 
 module.exports = router
