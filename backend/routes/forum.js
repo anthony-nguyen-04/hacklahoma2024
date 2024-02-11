@@ -103,3 +103,5 @@ router.get('/', async (req, res) => {
 
     return res.send(threads)
 })
+
+module.exports = router
