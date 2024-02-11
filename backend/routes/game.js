@@ -27,7 +27,7 @@ router.use((req, res, next) => {
         if (err)
             return res.status(401).send('jwt was signed improperly')
 
-        const user = Player.findOne({ email: decoded.email }).exec()
+        const user = await Player.findOne({ email: decoded.email }).exec()
         if (!user)
             return res.status(404).send('no user with that email')
 
