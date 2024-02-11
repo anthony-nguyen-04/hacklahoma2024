@@ -8,13 +8,9 @@ import Forum from "./Components/Forum";
 
 import Menu from "./Components/Menu";
 
-import background_music from "./Assets/soundtrack.mp3";
-
 import './App.css';
 
 function App() {
-  let song = new Audio(background_music);
-  song.play();
 
   return (
     <BrowserRouter>
