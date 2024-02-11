@@ -19,12 +19,12 @@ router.get('/login', async (req, res) => {
 
     if (!player) {
         playerId = crypto.randomBytes(16).toString('hex')
-        Player.create({ _id: playerId, email: email })
+        await Player.create({ _id: playerId, email: email })
     } else {
         playerId = player.id
     }
 
-    res.send(playerId)
+    return res.send(playerId)
 })
 
 router.get('/userId', (req, res) => {
