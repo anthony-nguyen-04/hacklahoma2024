@@ -4,7 +4,6 @@ import Typography from "@mui/material/Typography";
 import styled from "@emotion/styled";
 
 import Background from "../Assets/Images/background.png";
-import Menu from "./Menu";
 
 const TimesContainer = styled.div`
   background-image: url(${Background});
@@ -17,8 +16,7 @@ const TimesContainer = styled.div`
 
 const Times = () => {
   return (
-    <TimesContainer id="home">
-      <Menu />
+    <TimesContainer>
      
     </TimesContainer> 
   );

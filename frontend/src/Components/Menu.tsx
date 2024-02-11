@@ -9,6 +9,7 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import { Link } from "react-router-dom";
 
 import { pagesValues } from "./HeaderPages";
+import Authenticator from "./Authenticator";
 
 const fontTheme = createTheme(
   {
@@ -39,29 +40,30 @@ const Menu = () => {
             color={"transparent"}
             elevation={0}
           >
-            
+        
               <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-              <ThemeProvider theme={fontTheme}>
-                <Box
-                  component="div"
-                >
-                  {pagesValues.map((page) => (
-                    <Link to={`/${page.toLowerCase()}`}>
-                      <Button key={page}>
-                        <Typography
-                          color="#eee"
-                          textAlign="center"
-                          marginLeft="1rem"
-                          marginRight="1rem"
-                          fontWeight={400}
-                        >
-                          {page}
-                        </Typography>
-                      </Button>
-                    </Link>
-                  ))}
-                </Box>
-              </ThemeProvider>
+                <ThemeProvider theme={fontTheme}>
+                  <Box
+                    component="div"
+                  >
+                    {pagesValues.map((page) => (
+                      <Link to={`/${page.toLowerCase()}`}>
+                        <Button key={page}>
+                          <Typography
+                            color="#eee"
+                            textAlign="center"
+                            marginLeft="1rem"
+                            marginRight="1rem"
+                            fontWeight={400}
+                          >
+                            {page}
+                          </Typography>
+                        </Button>
+                      </Link>
+                    ))}
+                  </Box>
+                </ThemeProvider>
+                <Authenticator />
               </Toolbar>
             
         </AppBar>

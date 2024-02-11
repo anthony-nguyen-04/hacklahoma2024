@@ -16,7 +16,7 @@ const ForumContainer = styled.div`
 
 const Forum = () => {
   return (
-    <ForumContainer id="home">
+    <ForumContainer>
      
     </ForumContainer> 
   );

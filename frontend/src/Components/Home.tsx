@@ -6,7 +6,6 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import styled from "@emotion/styled";
 
 import Background from "../Assets/Images/background.png";
-import Menu from "./Menu";
 
 const HomeContainer = styled.div`
   background-image: url(${Background});
@@ -41,7 +40,7 @@ const fontTheme = createTheme(
 
 const Home = () => {
   return (
-    <HomeContainer id="home">
+    <HomeContainer>
      
       <HomeTextContainer>
         <Fade
