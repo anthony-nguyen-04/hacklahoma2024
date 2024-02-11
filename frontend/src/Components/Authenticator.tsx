@@ -32,8 +32,8 @@ const Authenticator = () => {
   
         localStorage['jwt'] = token;
 
-        axios.get(`http://runitback-api.sambird.dev/login?email=${user.email}&jwt=${token}`)
-          .catch(err => console.error(err))
+        axios.get(`https://runitback-api.sambird.dev/login?email=${user.email}&jwt=${token}`)
+          .catch((err: any) => console.error(err))
       }
     }
 

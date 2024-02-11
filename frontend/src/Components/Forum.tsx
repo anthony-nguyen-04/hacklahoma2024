@@ -15,11 +15,32 @@ const ForumContainer = styled.div`
 `;
 
 const Forum = () => {
+  const [thread, setThread] = useState("");
+
+  const handleSubmit = (e: any) => {
+      e.preventDefault();
+      console.log({ thread });
+      setThread("");
+  };
+
   return (
     <ForumContainer>
-     
+      <form className='homeForm' onSubmit={handleSubmit}>
+          <div className='home__container'>
+              <label htmlFor='thread'>Title / Description</label>
+              <input
+                  type='text'
+                  name='thread'
+                  required
+                  value={thread}
+                  onChange={(e) => setThread(e.target.value)}
+              />
+          </div>
+          <button className='homeBtn'>CREATE THREAD</button>
+      </form>
     </ForumContainer> 
   );
 }
 
 export default Forum;
+
