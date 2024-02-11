@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -18,6 +18,7 @@ const AuthenticatorContainer = styled.section`
 
 const Authenticator = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
+  const [userID, setUserID] = useState();
 
   useEffect(() => {
     if (isAuthenticated)
@@ -31,9 +32,20 @@ const Authenticator = () => {
         var token = jwt(packet, config["JWT_SECRET"]);
   
         localStorage['jwt'] = token;
+        localStorage["name"] = user.name;
+        localStorage["image"] = user.picture;
+
+        axios.get(`https://runitback-api.sambird.dev/userId?jwt=${token}`)
+        .then((response)=>{
+          setUserID(response.data)
+          console.log(response)
+        })
+        .catch((err: any) => console.error(err))
 
         axios.get(`https://runitback-api.sambird.dev/login?email=${user.email}&jwt=${token}`)
           .catch((err: any) => console.error(err))
+
+        localStorage["userID"] = userID;
       }
     }
 

@@ -73,7 +73,7 @@ const Play = () => {
             </Typography>
           </Button>
           <Typography variant="h5" style={{color: "#eee"}}>
-            Your UserID is "{userId}""
+            Your UserID is "{userId}"
           </Typography>
         </PlayCenterContainer>
       </ThemeProvider>

@@ -30,6 +30,8 @@ app.use('/times', game)
 app.use('/forum', forum)
 app.use('/', auth)
 
+app.use(cors({origin: true, credentials: true}));
+
 app.use((err, req, res, next) => {
     if (res.headersSent) {
         return next(err)

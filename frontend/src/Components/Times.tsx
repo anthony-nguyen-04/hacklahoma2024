@@ -24,8 +24,10 @@ const TimesTableContainer = styled.section`
   align-items: center;
   text-align: center;
   min-height: 100%;
-  width: 100%;
+  width: 80%;
+  margin: auto;
   overflow-wrap: anywhere;
+  gap: 10px;
 `;
 
 const fontTheme = createTheme(
@@ -68,7 +70,6 @@ const Times = () => {
       }
 
       setResult([(
-        <TimesTableContainer>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
@@ -92,7 +93,6 @@ const Times = () => {
               </TableBody>
             </Table>
           </TableContainer>
-        </TimesTableContainer>
       )])
     }
     getTimes();
@@ -100,7 +100,14 @@ const Times = () => {
 
   return (
     <TimesContainer>
-      {results.length ? results : 'Loading...'}
+      <TimesTableContainer>
+        <ThemeProvider theme={fontTheme}>
+          <Typography variant="h2" color="#eee">
+            RECENT TIMES
+          </Typography>
+        </ThemeProvider>
+        {results.length ? results : 'Loading...'}
+      </TimesTableContainer>
     </TimesContainer> 
   );
 }
