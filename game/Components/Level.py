@@ -1,16 +1,15 @@
+from __future__ import absolute_import
+
 import pygame
-from random import randint
-from tiles import Tile
-from player import Player
-from settings import tile_size, screen_width
-from server import sendScore
+from Tiles import Tile
+from Player import Player
+from Maps import tile_size
+#from server import sendScore
 
 class Level:
-    def __init__(self, level_data, surface, level_index, api_key):
+    def __init__(self, level_data, surface, api_key):
         self.display_surface = surface
-        self.level_index = level_index
 
-        self.load_assets()
         self.setup_level(level_data)
 
         self.current_x = 0
@@ -90,21 +89,16 @@ class Level:
             # print(main.level_number)
 
     def run(self):
-        self.stairs.update(self.world_shift)
-        self.stairs.draw(self.display_surface)
-
-        try:
-            self.go_stairs()
-        except:
-            pass
-
-        self.josh.update(self.world_shift)
-        self.josh.draw(self.display_surface)
+        # self.stairs.update(self.world_shift)
+        # self.stairs.draw(self.display_surface)
+        #
+        # try:
+        #     self.go_stairs()
+        # except:
+        #     pass
 
         # draw tiles
-        self.tiles.update(self.world_shift)
         self.tiles.draw(self.display_surface)
-        self.scroll_x()
 
         # draw player
         self.player.update()
