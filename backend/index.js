@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const path = require('path')
 const app = express()
 const config = require('../config.json')
 const PORT = config.PORTS.BACKEND || 3000
@@ -12,6 +13,8 @@ mongoose.connect(`mongodb://${config.DATABASE.IP}:27017/${config.DATABASE.DATABA
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+app.use('/download', express.static(path.join(__dirname, 'game')))
 
 // danger is my middle name
 app.use((req, res, next) => {
