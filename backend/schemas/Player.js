@@ -3,5 +3,5 @@ const { Schema } = mongoose
 
 module.exports = new Schema({
     email: String,
-    _id: Number
+    _id: String
 })

@@ -5,7 +5,7 @@ const Player = require('./Player')
 const Reply = require('./Reply')
 
 module.exports = new Schema({
-    _id: Number,
+    _id: String,
     title: String,
     content: String,
     author: Player,

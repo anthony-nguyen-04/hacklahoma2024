@@ -4,7 +4,7 @@ const { Schema } = mongoose
 const Player = require('./Player')
 
 module.exports = new Schema({
-    _id: Number,
+    _id: String,
     content: String,
     author: Player
 }, {
