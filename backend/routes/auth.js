@@ -57,7 +57,7 @@ router.get('/userId', (req, res) => {
     if (!req.user)
         return res.sendStatus(404)
 
-    return res.send(user.id)
+    return res.send(req.user.id)
 })
 
 module.exports = router
