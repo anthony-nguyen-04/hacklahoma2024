@@ -13,6 +13,12 @@ mongoose.connect(`mongodb://${config.DATABASE.IP}:27017/${config.DATABASE.DATABA
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+// danger is my middle name
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*")
+    next()
+})
+
 const auth = require('./routes/auth')
 const forum = require('./routes/forum')
 const game = require('./routes/game')
