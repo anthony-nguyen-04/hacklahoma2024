@@ -4,7 +4,6 @@ const { Schema } = mongoose
 const Player = require('./Player')
 
 module.exports = new Schema({
-    _id: Number,
     player: Player,
     splits: [new Schema({
         time: Number,

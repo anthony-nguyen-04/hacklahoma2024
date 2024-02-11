@@ -9,13 +9,16 @@ mongoose.connect(`mongodb://${config.DATABASE.IP}:27017/${config.DATABASE.DATABA
     pass: config.database.PASS
 })
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
 const auth = require('./routes/auth')
 const forum = require('./routes/forum')
 const game = require('./routes/game')
 
 app.use('/', auth)
-app.use('/', forum)
-app.use('/', game)
+app.use('/forum', forum)
+app.use('/times', game)
 
 app.use((err, req, res, next) => {
     if (res.headersSent) {
