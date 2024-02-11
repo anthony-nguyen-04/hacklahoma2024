@@ -3,6 +3,7 @@ from __future__ import absolute_import
 import pygame
 from Tiles import Tile
 from Player import Player
+from Gate import Gate
 from Maps import tile_size
 #from server import sendScore
 
@@ -23,6 +24,7 @@ class Level:
 
         # initializing sprites
         self.tiles = pygame.sprite.Group()
+        self.gates = pygame.sprite.Group()
         self.player = pygame.sprite.GroupSingle()
 
         # iterates throught the rows and columns of setting to generate the characters
@@ -31,14 +33,14 @@ class Level:
                 x = col_index * tile_size
                 y = row_index * tile_size
                 if cell == 'X':
-                    tile = Tile((x, y), tile_size)
+                    tile = Tile((x, y))
                     self.tiles.add(tile)
                 elif cell == 'P':
                     tile = Player((x, y))
                     self.player.add(tile)
-                # elif cell == "L":
-                #     staircase = Stairs((x, y), tile_size)
-                #     self.stairs.add(staircase)
+                elif cell == "G":
+                    gate = Gate((x, y))
+                    self.gates.add(gate)
                 # ADD A GAME ENDING CHARACTER
 
 
@@ -66,6 +68,8 @@ class Level:
     def vertical_movement_collision(self):
         player = self.player.sprite
 
+        player.rect.y += player.direction.y * player.speed
+
         for sprite in self.tiles.sprites():
             if sprite.rect.colliderect(player.rect):
                 if player.direction.y > 0:
@@ -78,27 +82,25 @@ class Level:
                     player.on_ceiling = True
 
 
-    def go_stairs(self):
+    def go_gate(self):
         player = self.player.sprite
+        gate_sprite = self.gates.sprites()[0]
 
-        stair_sprite = self.stairs.sprites()[0]
-
-        if stair_sprite.rect.colliderect(player.rect):
-            self.next_level = True
-            pygame.mixer.pause()
-            # print(main.level_number)
+        if gate_sprite.rect.colliderect(player.rect):
+            pygame.quit()
 
     def run(self):
-        # self.stairs.update(self.world_shift)
-        # self.stairs.draw(self.display_surface)
-        #
-        # try:
-        #     self.go_stairs()
-        # except:
-        #     pass
+
+        try:
+            self.go_gate()
+        except:
+            pass
 
         # draw tiles
         self.tiles.draw(self.display_surface)
+
+        # draw gates
+        self.gates.draw(self.display_surface)
 
         # draw player
         self.player.update()
