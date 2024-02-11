@@ -6,7 +6,8 @@ const PORT = config.PORTS.BACKEND || 3000
 
 mongoose.connect(`mongodb://${config.DATABASE.IP}:27017/${config.DATABASE.DATABASE}`, {
     user: config.DATABASE.USER,
-    pass: config.DATABASE.PASS
+    pass: config.DATABASE.PASSWORD,
+    authSource: 'runitback'
 })
 
 app.use(express.json())
