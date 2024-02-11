@@ -23,9 +23,9 @@ const auth = require('./routes/auth')
 const forum = require('./routes/forum')
 const game = require('./routes/game')
 
-app.use('/', auth)
-app.use('/forum', forum)
 app.use('/times', game)
+app.use('/forum', forum)
+app.use('/', auth)
 
 app.use((err, req, res, next) => {
     if (res.headersSent) {
