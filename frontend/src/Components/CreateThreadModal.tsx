@@ -42,7 +42,13 @@ const CreateThreadModal = ({
       jwt: localStorage["jwt"],
       title,
       content
-    })
+    },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }}
+    )
     .then((response) => {
       console.log(response);
     });
