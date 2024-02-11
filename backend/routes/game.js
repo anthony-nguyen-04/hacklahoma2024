@@ -79,7 +79,7 @@ router.post('/', async (req, res) => {
         return res.status(404).send('no known player with that id')
 
     // FIXME: potentially different in final project
-    let levels = [1, 2, 3, 4, 5]
+    let levels = [1]
 
     const splits = req.body.splits
 
