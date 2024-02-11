@@ -26,11 +26,10 @@ const auth = require('./routes/auth')
 const forum = require('./routes/forum')
 const game = require('./routes/game')
 
+app.use(cors({origin: true, credentials: true}));
 app.use('/times', game)
 app.use('/forum', forum)
 app.use('/', auth)
-
-app.use(cors({origin: true, credentials: true}));
 
 app.use((err, req, res, next) => {
     if (res.headersSent) {
