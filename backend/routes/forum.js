@@ -7,7 +7,6 @@ const router = express.Router()
 
 const Player = require('../models/Player')
 const Thread = require('../models/Thread')
-const Reply = require('../models/Reply')
 
 const { JWT_SECRET } = require('../../config.json')
 
@@ -65,8 +64,7 @@ router.post('/:threadId/reply', async (req, res) => {
 
     const id = crypto.randomBytes(16).toString('hex')
 
-    const reply = await Reply.create({ _id: id, content: content, author: req.user })
-    parent.replies.push(reply)
+    parent.replies.push({ _id: id, content: content, author: req.user })
     await parent.save()
 
     return res.sendStatus(200)
@@ -87,15 +85,16 @@ router.get('/:threadId/:replyId', async (req, res) => {
     const replyId = req.params.replyId
 
     const thread = await Thread.findOne({ _id: threadId }).exec()
-    const reply = await Reply.findOne({ _id: replyId }).exec()
 
-    if (!thread || !reply)
+    if (!thread)
         return res.sendStatus(404)
 
-    if (thread !== reply.parent())
-        return res.sendStatus(404)
+    for (let reply of thread.replies) {
+        if (reply.id === replyId)
+            return res.send(reply.toJSON())
+    }
 
-    return res.send(reply.toJSON())
+    return res.sendStatus(404)
 })
 
 router.get('/', async (req, res) => {
