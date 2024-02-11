@@ -61,7 +61,9 @@ router.get('/', async (req, res) => {
         for (let time of times) {
             found.push({
                 player: time.player,
-                time: time.time
+                time: time.time,
+                key: time.id,
+                date: time.createdAt
             })
         }
     }
