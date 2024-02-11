@@ -1,10 +1,10 @@
 from __future__ import absolute_import
 
 import pygame
-from Tiles import Tile
-from Player import Player
-from Gate import Gate
-from Maps import tile_size
+from Components.Tiles import Tile
+from Components.Player import Player
+from Components.Gate import Gate
+from Components.Maps import tile_size
 #from server import sendScore
 
 class Level:

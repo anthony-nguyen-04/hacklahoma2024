@@ -10,8 +10,9 @@ import requests
 
 sys.path.insert(0, './Components')
 
-from Level import Level
-from Maps import level_map_1
+from Components.Level import Level
+from Components.Maps import level_map_1
+from Components.util import path
 
 SCREEN_WIDTH = 1450
 SCREEN_HEIGHT = 400
@@ -23,7 +24,7 @@ pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 
-background_img = pygame.image.load("./Assets/background.jpg")
+background_img = pygame.image.load(path("./Assets/background.jpg"))
 
 # Get the image dimensions
 image_width, image_height = background_img.get_size()
