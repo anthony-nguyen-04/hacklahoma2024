@@ -5,8 +5,8 @@ const config = require('../config.json')
 const PORT = config.PORTS.BACKEND || 3000
 
 mongoose.connect(`mongodb://${config.DATABASE.IP}:27017/${config.DATABASE.DATABASE}`, {
-    user: config.database.USER,
-    pass: config.database.PASS
+    user: config.DATABASE.USER,
+    pass: config.DATABASE.PASS
 })
 
 app.use(express.json())
