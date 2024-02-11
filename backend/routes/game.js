@@ -19,7 +19,7 @@ router.post('*', (req, res, next) => {
     next()
 })
 
-router.use((req, res, next) => {
+router.get('*', (req, res, next) => {
     if (!req.token)
         return res.status(400).send('no jwt provided')
 
@@ -70,6 +70,12 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
+    const playerId = req.body.playerId
+    const player = await Player.findOne({ _id: playerId })
+
+    if (!player)
+        return res.status(404).send('no known player with that id')
+
     // FIXME: potentially different in final project
     let levels = [1, 2, 3, 4, 5]
 
@@ -88,7 +94,7 @@ router.post('/', async (req, res) => {
     if (levels.length !== 0)
         return res.status(400).send('not all levels complete')
 
-    await Times.create({ player: req.user, splits: splits })
+    await Times.create({ player: player, splits: splits })
 
     return res.sendStatus(200)
 })
