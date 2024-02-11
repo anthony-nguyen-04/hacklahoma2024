@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import { useAuth0 } from "@auth0/auth0-react";
+
+import jwt from "jwt-encode";
 
 import styled from "@emotion/styled";
 import LogoutButton from "./Auth0/Logout";
 import LoginButton from "./Auth0/Login";
+
+import config from "../config.json";
 
 const AuthenticatorContainer = styled.section`
   display: flex;
@@ -13,6 +17,23 @@ const AuthenticatorContainer = styled.section`
 
 const Authenticator = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
+
+  useEffect(() => {
+    if (isAuthenticated)
+    {
+      if (user)
+      {
+        const packet : { [key: string]: string } = {
+          email: (user.email ?? "default@gmail.com")
+        };
+  
+        var token = jwt(packet, config["JWT_SECRET"]);
+  
+        console.log(token);
+      }
+    }
+
+  }, [isAuthenticated]);
 
   return (
     isAuthenticated ? 
